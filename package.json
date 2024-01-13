@@ -43,5 +43,11 @@
   },
   "resolutions": {
     "styled-components": "^5"
+  },
+  "devDependencies": {
+    "msw": "^2.0.14"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
