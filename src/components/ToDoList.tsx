@@ -18,7 +18,7 @@ export default function ToDoList() {
   const [todos, setTodos] = useState<Array<ToDoDTO>>([]);
   const fetchTodo = async () => {
     try {
-      const res = await axios('/todos');
+      const res = await axios.get('/todos');
       setTodos(res.data);
     } catch (e) {
       console.error('error', e);
@@ -29,11 +29,21 @@ export default function ToDoList() {
     fetchTodo();
   }, []);
 
+
+  async function updateTodo(id: number, checked: boolean) {
+    try {
+      await axios.patch(`/todos/${id}`, { checked: !checked });
+      await fetchTodo();
+    } catch (e) {
+      console.error('error', e);
+    }
+  }
+
   return (
     <StyledTodoList>
       {todos.map(({ id, text, checked }) => (
         <li key={id}>
-          <ToDoItem id={id} text={text} checked={checked} />
+          <ToDoItem id={id} text={text} checked={checked} onToggleCheck={() => updateTodo(id, checked)} />
         </li>
       ))}
     </StyledTodoList>

@@ -5,14 +5,14 @@ export default createGlobalStyle`
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-  }
-  
-  body {
-    background-color: #EBEBEB;
     color: #27272A;
     font-family: 'Noto Sans KR', serif;
     font-weight: normal;
     font-style: normal;
+  }
+  
+  body {
+    background-color: #EBEBEB;
   }
 
   ol, ul {
@@ -29,6 +29,8 @@ export default createGlobalStyle`
   }
 
   button {
+    background-color: transparent;
+    border: 0;
     cursor: pointer;
   }
 `;
