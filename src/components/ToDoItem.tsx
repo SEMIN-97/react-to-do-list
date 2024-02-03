@@ -1,15 +1,36 @@
 import styled from 'styled-components';
 
 import { ToDoType } from '../types/todoType';
+import { useState } from 'react';
 
 const ToDoItemLayout = styled.div`
+  position: relative;
+  overflow: hidden;
+  
+  .hover-area {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 100%;
+    content: '';
+  }
+`;
+
+const ToDoItemContents = styled.div<{ $isHover: boolean }>`
   display: flex;
   align-items: center;
+  position: relative;
   padding: 20px;
   background-color: #FFF;
   border-radius: 10px;
   font-size: 14px;
   cursor: pointer;
+  transition: transform 0.3s;
+
+  ${props => props.$isHover && `
+    transform: translateX(-60px);
+  `}
 `;
 
 const Checkbox = styled.div<{ $checked: boolean }>`
@@ -38,11 +59,54 @@ const Text = styled.p<{ $checked: boolean }>`
   `}
 `;
 
-export default function ToDoItem({ text, checked, onToggleCheck}: ToDoType) {
+const DeleteButton = styled.button<{ $isHover: boolean }>`
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translate(0%, -50%);
+  width: 40px;
+  height: 40px;
+  background-color: #27272A;
+  border-radius: 50%;
+  color: #FFF;
+  font-size: 16px;
+  
+  &:after {
+    position: absolute; 
+    top: 0;
+    right: -10px;
+    width: 60px;
+    height: 100%;
+    background-color: #FFF;
+    transition: transform 0.3s;
+    content: '';
+
+    ${props => props.$isHover && `
+      transform: translateX(-60px);
+  `}
+  }
+`;
+
+export default function ToDoItem({ text, checked, onToggleCheck, onDeleteItem }: ToDoType) {
+  const [isHover, setIsHover] = useState<any>(false);
+
+  function handleMouseOver() {
+    setIsHover(true);
+  }
+
+  function handleMouseOut() {
+    setIsHover(false);
+  }
+
   return (
-    <ToDoItemLayout onClick={onToggleCheck}>
-      <Checkbox $checked={checked} />
-      <Text $checked={checked}>{ text }</Text>
+    <ToDoItemLayout>
+      <ToDoItemContents $isHover={isHover} onClick={onToggleCheck}>
+        <Checkbox $checked={checked} />
+        <Text $checked={checked}>{ text }</Text>
+      </ToDoItemContents>
+      <div className="hover-area" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+        <DeleteButton className="material-symbols-outlined" $isHover={isHover} onClick={onDeleteItem}>delete</DeleteButton>
+      </div>
     </ToDoItemLayout>
   );
 }

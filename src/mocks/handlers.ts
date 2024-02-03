@@ -34,6 +34,16 @@ export const handlers = [
 
     findItem.checked = data.checked;
     return new HttpResponse(null, { status: 204 });
+  }),
+  http.delete<UpdateToDoParams>('/todos/:id', async ({ params }) => {
+    const findItemIdx = todos.findIndex(({id}) => id === Number(params.id));
+
+    if (0 > findItemIdx) {
+      return new HttpResponse(null, { status: 404 });
+    }
+
+    todos.splice(findItemIdx, 1);
+    return new HttpResponse(null, { status: 200 });
   })
 ];
 

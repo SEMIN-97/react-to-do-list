@@ -14,4 +14,5 @@ export interface ToDoDTO {
 
 export interface ToDoType extends ToDoDTO {
   onToggleCheck: () => void;
+  onDeleteItem: () => void;
 }

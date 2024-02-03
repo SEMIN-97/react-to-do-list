@@ -29,7 +29,6 @@ export default function ToDoList() {
     fetchTodo();
   }, []);
 
-
   async function updateTodo(id: number, checked: boolean) {
     try {
       await axios.patch(`/todos/${id}`, { checked: !checked });
@@ -39,11 +38,21 @@ export default function ToDoList() {
     }
   }
 
+  async function deleteTodo(id: number) {
+    try {
+      await axios.delete(`/todos/${id}`);
+      await fetchTodo();
+    } catch (e) {
+      console.error('error', e);
+    }
+  }
+
+
   return (
     <StyledTodoList>
       {todos.map(({ id, text, checked }) => (
         <li key={id}>
-          <ToDoItem id={id} text={text} checked={checked} onToggleCheck={() => updateTodo(id, checked)} />
+          <ToDoItem id={id} text={text} checked={checked} onToggleCheck={() => updateTodo(id, checked)} onDeleteItem={() => deleteTodo(id)} />
         </li>
       ))}
     </StyledTodoList>
