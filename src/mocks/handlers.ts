@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw';
 
-import { ToDoDTO, UpdateToDoParams, UpdateToDoRequestBody } from '../types/todoType';
+import { ToDoDTO, UpdateToDoParams } from '../types/todoType';
 
 const todos: Array<ToDoDTO> = [
   {
@@ -24,7 +24,18 @@ export const handlers = [
   http.get<never, never, Array<ToDoDTO>>('/todos', () => {
     return HttpResponse.json(todos);
   }),
-  http.patch<UpdateToDoParams, UpdateToDoRequestBody>('/todos/:id', async ({ params, request }) => {
+  http.post<never, ToDoDTO>('/todos', async ({ request }) => {
+    const data = await request.json();
+    const nextId = Math.max(...todos.map(todo => todo.id)) + 1;
+    todos.unshift({
+      id: nextId,
+      text: data.text,
+      checked: false
+    });
+
+    return new HttpResponse(null, { status: 201 });
+  }),
+  http.patch<UpdateToDoParams, ToDoDTO>('/todos/:id', async ({ params, request }) => {
     const data = await request.json();
     const findItem = todos.find(({id}) => id === Number(params.id));
 

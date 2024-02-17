@@ -2,10 +2,6 @@ export interface UpdateToDoParams {
   id: string;
 }
 
-export interface UpdateToDoRequestBody {
-  checked: boolean;
-}
-
 export interface ToDoDTO {
   id: number;
   text: string;

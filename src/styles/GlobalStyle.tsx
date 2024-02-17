@@ -32,6 +32,15 @@ export default createGlobalStyle`
     background-color: transparent;
     border: 0;
     cursor: pointer;
+    
+    &:disabled {
+      cursor: default;
+    }
+  }
+  
+  input {
+    background-color: transparent;
+    border: 0;
   }
 
   .material-symbols-outlined {

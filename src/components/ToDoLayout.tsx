@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 import ToDoList from './ToDoList';
+import ToDoCreate from './ToDoCreate';
 
 const StyledLayout = styled.div`
-  position: absolute; top: 0;
+  position: absolute;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
@@ -26,6 +28,7 @@ export default function ToDoLayout() {
     <StyledLayout>
       <H1>TO DO LIST</H1>
       <ToDoList />
+      <ToDoCreate />
     </StyledLayout>
   );
 }
