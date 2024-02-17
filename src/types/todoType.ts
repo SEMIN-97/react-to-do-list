@@ -7,8 +7,3 @@ export interface ToDoDTO {
   text: string;
   checked: boolean;
 }
-
-export interface ToDoType extends ToDoDTO {
-  onToggleCheck: () => void;
-  onDeleteItem: () => void;
-}

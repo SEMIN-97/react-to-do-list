@@ -1,7 +1,11 @@
+import { useEffect, useState } from 'react';
+
+import axios from 'axios';
 import styled from 'styled-components';
 
 import ToDoList from './ToDoList';
 import ToDoCreate from './ToDoCreate';
+import { ToDoDTO } from '../types/todoType';
 
 const StyledLayout = styled.div`
   position: absolute;
@@ -24,10 +28,46 @@ const H1 = styled.h1`
 `;
 
 export default function ToDoLayout() {
+  const [toDos, setToDos] = useState<Array<ToDoDTO>>([]);
+  const fetchTodo = async () => {
+    try {
+      const res = await axios.get('/todos');
+      setToDos(res.data);
+    } catch (e) {
+      console.error('error', e);
+    }
+  };
+
+  useEffect(() => {
+    fetchTodo();
+  }, []);
+
+  async function updateToDo(id: number, checked: boolean) {
+    try {
+      await axios.patch(`/todos/${id}`, { checked: !checked });
+      await fetchTodo();
+    } catch (e) {
+      console.error('error', e);
+    }
+  }
+
+  async function deleteToDo(id: number) {
+    try {
+      await axios.delete(`/todos/${id}`);
+      await fetchTodo();
+    } catch (e) {
+      console.error('error', e);
+    }
+  }
+
   return (
     <StyledLayout>
       <H1>TO DO LIST</H1>
-      <ToDoList />
+      <ToDoList
+        toDos={toDos}
+        onToggleCheck={updateToDo}
+        onDeleteItem={deleteToDo}
+      />
       <ToDoCreate />
     </StyledLayout>
   );

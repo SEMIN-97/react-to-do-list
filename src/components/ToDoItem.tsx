@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 
-import { ToDoType } from '../types/todoType';
+import { ToDoDTO } from '../types/todoType';
 import { useState } from 'react';
+
+interface ToDoItemProps extends ToDoDTO {
+  onToggleCheck: () => void;
+  onDeleteItem: () => void;
+}
 
 const ToDoItemLayout = styled.div`
   position: relative;
@@ -87,7 +92,7 @@ const DeleteButton = styled.button<{ $isHover: boolean }>`
   }
 `;
 
-export default function ToDoItem({ text, checked, onToggleCheck, onDeleteItem }: ToDoType) {
+export default function ToDoItem({ text, checked, onToggleCheck, onDeleteItem }: ToDoItemProps) {
   const [isHover, setIsHover] = useState<any>(false);
 
   function handleMouseOver() {
