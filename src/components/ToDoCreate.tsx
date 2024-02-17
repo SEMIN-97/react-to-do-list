@@ -1,9 +1,12 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 
-import axios from 'axios';
 import styled, { keyframes } from 'styled-components';
 
-const AddButton = styled.button<{ $isOpen: boolean }>`
+interface ToDoCreateProps {
+  onSubmit: (value: string) => void;
+}
+
+const CreateButton = styled.button<{ $isOpen: boolean }>`
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -98,26 +101,28 @@ const SubmitButton = styled.button`
   }
 `;
 
-export default function ToDoCreate() {
+export default function ToDoCreate({ onSubmit }: ToDoCreateProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [value, setValue] = useState<string>('');
-
-  function togglePopup() {
-    setIsOpen(prev => !prev);
-  }
 
   function changeValue(e: ChangeEvent<HTMLInputElement>) {
     setValue(e.target.value);
  }
 
   async function submit(e: FormEvent<HTMLFormElement>) {
-    try {
-      await axios.post(`/todos`, { text: value });
-    } catch (e) {
-      console.error(e);
-    } finally {
-      e.preventDefault();
-    }
+    onSubmit(value);
+    togglePopup();
+    e.preventDefault();
+  }
+
+  function togglePopup() {
+    setIsOpen(prev => {
+      if (prev) {
+        setValue('');
+      }
+
+      return !prev;
+    });
   }
 
   return (
@@ -131,7 +136,7 @@ export default function ToDoCreate() {
           </Form>
         </PopupLayout>
         )}
-      <AddButton onClick={togglePopup} $isOpen={isOpen} />
+      <CreateButton onClick={togglePopup} $isOpen={isOpen} />
     </>
   );
 

@@ -29,6 +29,11 @@ const H1 = styled.h1`
 
 export default function ToDoLayout() {
   const [toDos, setToDos] = useState<Array<ToDoDTO>>([]);
+
+  useEffect(() => {
+    fetchTodo();
+  }, []);
+
   const fetchTodo = async () => {
     try {
       const res = await axios.get('/todos');
@@ -37,10 +42,6 @@ export default function ToDoLayout() {
       console.error('error', e);
     }
   };
-
-  useEffect(() => {
-    fetchTodo();
-  }, []);
 
   async function updateToDo(id: number, checked: boolean) {
     try {
@@ -60,6 +61,15 @@ export default function ToDoLayout() {
     }
   }
 
+  async function createToDo(text: string) {
+    try {
+      await axios.post(`/todos`, { text });
+      await fetchTodo();
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   return (
     <StyledLayout>
       <H1>TO DO LIST</H1>
@@ -68,7 +78,9 @@ export default function ToDoLayout() {
         onToggleCheck={updateToDo}
         onDeleteItem={deleteToDo}
       />
-      <ToDoCreate />
+      <ToDoCreate
+        onSubmit={createToDo}
+      />
     </StyledLayout>
   );
 }
