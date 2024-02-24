@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import ToDoList from './ToDoList';
 import ToDoCreate from './ToDoCreate';
 import { ToDoDTO } from '../types/todoType';
+import ProgressIndicator from './ProgressIndicator';
 
 const StyledLayout = styled.div`
   position: absolute;
@@ -27,8 +28,14 @@ const H1 = styled.h1`
   font-weight: 900;
 `;
 
+const ProgressLayout = styled.div`
+  margin: 35px 0 45px;
+`;
+
 export default function ToDoLayout() {
   const [toDos, setToDos] = useState<Array<ToDoDTO>>([]);
+  const completedItemCount = toDos.filter(item => item.checked).length;
+  const percentage = completedItemCount / toDos.length * 100;
 
   useEffect(() => {
     fetchTodo();
@@ -73,6 +80,9 @@ export default function ToDoLayout() {
   return (
     <StyledLayout>
       <H1>TO DO LIST</H1>
+      <ProgressLayout>
+        <ProgressIndicator percentage={percentage} />
+      </ProgressLayout>
       <ToDoList
         toDos={toDos}
         onToggleCheck={updateToDo}

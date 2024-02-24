@@ -10,8 +10,6 @@ interface ToDoListProps {
 }
 
 const StyledTodoList = styled.ul`
-  margin-top: 45px;
-
   li + li {
     margin-top: 10px;
   }
