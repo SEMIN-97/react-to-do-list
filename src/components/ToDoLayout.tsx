@@ -7,6 +7,12 @@ import ToDoList from './ToDoList';
 import ToDoCreate from './ToDoCreate';
 import { ToDoDTO } from '../types/todoType';
 import ProgressIndicator from './ProgressIndicator';
+import ThemeIcon from './ThemeIcon';
+
+interface ToDoLayoutProps {
+  isDarkMode: boolean;
+  onToggleMode: () => void;
+}
 
 const StyledLayout = styled.div`
   position: absolute;
@@ -32,7 +38,7 @@ const ProgressLayout = styled.div`
   margin: 35px 0 45px;
 `;
 
-export default function ToDoLayout() {
+export default function ToDoLayout({ isDarkMode, onToggleMode }: ToDoLayoutProps) {
   const [toDos, setToDos] = useState<Array<ToDoDTO>>([]);
   const completedItemCount = toDos.filter(item => item.checked).length;
   const percentage = completedItemCount / toDos.length * 100;
@@ -79,6 +85,7 @@ export default function ToDoLayout() {
 
   return (
     <StyledLayout>
+      <ThemeIcon isDarkMode={isDarkMode} onToggleMode={onToggleMode} />
       <H1>TO DO LIST</H1>
       <ProgressLayout>
         <ProgressIndicator percentage={percentage} />

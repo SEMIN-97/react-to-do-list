@@ -1,6 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
+  :root {
+    --color-text: ${props => props.theme.color.text};
+    --color-primary: ${props => props.theme.color.primary};
+    --color-bg: ${props => props.theme.color.bg};
+  }
+  
   * {
     padding: 0;
     margin: 0;
