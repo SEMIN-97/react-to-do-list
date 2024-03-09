@@ -14,7 +14,7 @@ const CreateButton = styled.button<{ $isOpen: boolean }>`
   transition: transform 0.3s;
   width: 80px;
   height: 80px;
-  background-color: #27272A;
+  background-color: var(--color-primary);
   border-radius: 50%;
 
   ${props => props.$isOpen && `
@@ -28,7 +28,7 @@ const CreateButton = styled.button<{ $isOpen: boolean }>`
     transform: translate(-50%, -50%);
     width: 3px;
     height: 30px;
-    background-color: #FFF;
+    background-color: var(--color-secondary);
     content: '';
   }
 
@@ -39,7 +39,7 @@ const CreateButton = styled.button<{ $isOpen: boolean }>`
     transform: translate(-50%, -50%);
     width: 30px;
     height: 3px;
-    background-color: #FFF;
+    background-color: var(--color-secondary);
     content: '';
   }
 `;
@@ -62,7 +62,7 @@ const PopupLayout = styled.div`
   padding: 30px;
   width: 100%;
   height: 100%;
-  background-color: #F8F8F8;
+  background-color: var(--color-bg-app);
   border-radius: 20px;
   animation: .1s ${FadeIn};
 `;
@@ -85,7 +85,7 @@ const Form = styled.form`
 const Input = styled.input`
   width: 100%;
   height: 40px;
-  border-bottom: 1px solid #27272A;
+  border-bottom: 1px solid var(--color-primary);
   font-size: 14px;
 `;
 

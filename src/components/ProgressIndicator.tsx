@@ -8,7 +8,7 @@ const BackgroundRail = styled.div`
   position: relative;
   height: 5px;
   border-radius: 2px;
-  background-color: #E1E3EB;
+  background-color: var(--color-progress-rail);
   overflow: hidden;
 `;
 
@@ -19,7 +19,7 @@ const ProgressBar = styled.div`
   width: 0;
   height: 100%;
   border-radius: 2px;
-  background-color: #27272A;
+  background-color: var(--color-primary);
   transition: width 0.5s;
 `;
 

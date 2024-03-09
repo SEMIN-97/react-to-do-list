@@ -1,7 +1,9 @@
 export default {
-  color: {
-    bg: '#27272A',
-    text: '#EBEBEB',
-    primary: '#27272A'
-  }
+  primary: '#EBEBEB',
+  secondary: '#252526',
+  text: '#EBEBEB',
+  bgBody: '#000',
+  bgApp: '#000',
+  borderApp: '#555',
+  progressRail: '#212121'
 };

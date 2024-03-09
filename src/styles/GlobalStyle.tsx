@@ -2,23 +2,27 @@ import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
   :root {
-    --color-text: ${props => props.theme.color.text};
-    --color-primary: ${props => props.theme.color.primary};
-    --color-bg: ${props => props.theme.color.bg};
+    --color-text: ${props => props.theme.text};
+    --color-primary: ${props => props.theme.primary};
+    --color-secondary: ${props => props.theme.secondary};
+    --color-bg-body: ${props => props.theme.bgBody};
+    --color-bg-app: ${props => props.theme.bgApp};
+    --color-border-app: ${props => props.theme.borderApp};
+    --color-progress-rail: ${props => props.theme.progressRail};
   }
   
   * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    color: #27272A;
+    color: var(--color-text);
     font-family: 'Noto Sans KR', serif;
     font-weight: normal;
     font-style: normal;
   }
   
   body {
-    background-color: #EBEBEB;
+    background-color: var(--color-bg-body);
   }
 
   ol, ul {

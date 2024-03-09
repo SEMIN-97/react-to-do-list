@@ -24,7 +24,8 @@ const StyledLayout = styled.div`
   height: 700px;
   padding: 60px 30px;
   margin: auto;
-  background-color: #F8F8F8;
+  background-color: var(--color-bg-app);
+  border: 1px solid var(--color-border-app);
   border-radius: 20px;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, .15);
 `;

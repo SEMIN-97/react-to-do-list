@@ -27,7 +27,7 @@ const ToDoItemContents = styled.div<{ $isHover: boolean }>`
   align-items: center;
   position: relative;
   padding: 20px;
-  background-color: #FFF;
+  background-color: var(--color-secondary);
   border-radius: 10px;
   font-size: 14px;
   cursor: pointer;
@@ -42,7 +42,7 @@ const Checkbox = styled.div<{ $checked: boolean }>`
   position: relative;
   width: 20px;
   height: 20px;
-  border: 1px solid #27272A;
+  border: 1px solid var(--color-text);
   
   ${props => props.$checked && `
     &:after {
@@ -71,9 +71,9 @@ const DeleteButton = styled.button<{ $isHover: boolean }>`
   transform: translate(0%, -50%);
   width: 40px;
   height: 40px;
-  background-color: #27272A;
+  background-color: var(--color-primary);
   border-radius: 50%;
-  color: #FFF;
+  color: var(--color-secondary);
   font-size: 16px;
   
   &:after {
@@ -82,7 +82,7 @@ const DeleteButton = styled.button<{ $isHover: boolean }>`
     right: -10px;
     width: 60px;
     height: 100%;
-    background-color: #FFF;
+    background-color: var(--color-secondary);
     transition: transform 0.3s;
     content: '';
 
