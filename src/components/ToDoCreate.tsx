@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useRef, useState } from 'react';
 
 import styled, { keyframes } from 'styled-components';
 
@@ -104,6 +104,26 @@ const SubmitButton = styled.button`
 export default function ToDoCreate({ onSubmit }: ToDoCreateProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [value, setValue] = useState<string>('');
+  const inputRef = useRef<HTMLInputElement>(null);
+  const createButtonRef = useRef<HTMLButtonElement>(null);
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  if (!isOpen || event.key !== 'Tab') {
+      return;
+    }
+
+    if (document.activeElement === inputRef.current && event.shiftKey) {
+      createButtonRef.current?.focus();
+      event.preventDefault();
+      return;
+    }
+
+    if (document.activeElement === createButtonRef.current && !event.shiftKey) {
+      inputRef.current?.focus();
+      event.preventDefault();
+      return;
+    }
+  };
 
   function changeValue(e: ChangeEvent<HTMLInputElement>) {
     setValue(e.target.value);
@@ -126,18 +146,32 @@ export default function ToDoCreate({ onSubmit }: ToDoCreateProps) {
   }
 
   return (
-    <>
+    <div onKeyDown={handleKeyDown}>
       {isOpen && (
         <PopupLayout>
           <PopupTitle>NEW</PopupTitle>
           <Form onSubmit={submit}>
-            <Input autoFocus onChange={changeValue} value={value} />
-            <SubmitButton type='submit' disabled={!value.length}>SUBMIT</SubmitButton>
+            <Input
+              autoFocus
+              onChange={changeValue}
+              value={value}
+              ref={inputRef}
+            />
+            <SubmitButton
+              type='submit'
+              disabled={!value.length}
+            >
+              SUBMIT
+            </SubmitButton>
           </Form>
         </PopupLayout>
         )}
-      <CreateButton onClick={togglePopup} $isOpen={isOpen} />
-    </>
+      <CreateButton
+        onClick={togglePopup}
+        $isOpen={isOpen}
+        ref={createButtonRef}
+      />
+    </div>
   );
 
 }

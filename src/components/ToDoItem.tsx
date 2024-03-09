@@ -22,10 +22,11 @@ const ToDoItemLayout = styled.div`
   }
 `;
 
-const ToDoItemContents = styled.div<{ $isHover: boolean }>`
+const ToDoItemContents = styled.button<{ $isHover: boolean }>`
   display: flex;
   align-items: center;
   position: relative;
+  width: 100%;
   padding: 20px;
   background-color: var(--color-secondary);
   border-radius: 10px;
@@ -109,7 +110,7 @@ export default function ToDoItem({ text, checked, onToggleCheck, onDeleteItem }:
         <Checkbox $checked={checked} />
         <Text $checked={checked}>{ text }</Text>
       </ToDoItemContents>
-      <div className="hover-area" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+      <div className="hover-area" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onFocus={handleMouseOver} onBlur={handleMouseOut}>
         <DeleteButton className="material-symbols-outlined" $isHover={isHover} onClick={onDeleteItem}>delete</DeleteButton>
       </div>
     </ToDoItemLayout>
