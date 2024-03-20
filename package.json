@@ -22,7 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -46,9 +48,11 @@
     "styled-components": "^5"
   },
   "devDependencies": {
+    "gh-pages": "^6.1.1",
     "msw": "^2.0.14"
   },
   "msw": {
     "workerDirectory": "public"
-  }
+  },
+  "homepage": "https://semin-97.github.io/react-to-do-list/"
 }
