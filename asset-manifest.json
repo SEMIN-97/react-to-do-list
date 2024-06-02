@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-to-do-list/static/css/main.38368a87.css",
-    "main.js": "/react-to-do-list/static/js/main.9fd3457c.js",
+    "main.js": "/react-to-do-list/static/js/main.20bc00cc.js",
     "static/js/652.816f940c.chunk.js": "/react-to-do-list/static/js/652.816f940c.chunk.js",
     "static/js/787.ef22139f.chunk.js": "/react-to-do-list/static/js/787.ef22139f.chunk.js",
     "static/js/8.1ecf9019.chunk.js": "/react-to-do-list/static/js/8.1ecf9019.chunk.js",
@@ -16,13 +16,13 @@
     "static/media/NotoSansKR-Black.woff2": "/react-to-do-list/static/media/NotoSansKR-Black.2ac864a194a4c2b8049b.woff2",
     "index.html": "/react-to-do-list/index.html",
     "main.38368a87.css.map": "/react-to-do-list/static/css/main.38368a87.css.map",
-    "main.9fd3457c.js.map": "/react-to-do-list/static/js/main.9fd3457c.js.map",
+    "main.20bc00cc.js.map": "/react-to-do-list/static/js/main.20bc00cc.js.map",
     "652.816f940c.chunk.js.map": "/react-to-do-list/static/js/652.816f940c.chunk.js.map",
     "787.ef22139f.chunk.js.map": "/react-to-do-list/static/js/787.ef22139f.chunk.js.map",
     "8.1ecf9019.chunk.js.map": "/react-to-do-list/static/js/8.1ecf9019.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.38368a87.css",
-    "static/js/main.9fd3457c.js"
+    "static/js/main.20bc00cc.js"
   ]
 }
